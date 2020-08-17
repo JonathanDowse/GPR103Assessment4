@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Log : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public Rigidbody2D rb;                                                          // creating a rigidbody to assign the parent component to
+	                                                   
+	float speed = 2f;                                                                    // declaring a speed variable
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void FixedUpdate()
+	{
+		Vector2 forward = new Vector2(transform.right.x, transform.right.y);        // assigning gameobject's position to a new vector 
+		rb.MovePosition(rb.position + forward * Time.fixedDeltaTime * speed);       // moving the log gameobjects forward at a random calculated speed
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.tag == "CarDestroyer")                                        // if the log collides with any gameobject with the "CarDestroyer" tag							
+		{
+			Destroy(gameObject);                                                    // destroy parent gameobject
+		}
+	}
 }

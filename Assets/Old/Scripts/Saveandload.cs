@@ -9,8 +9,7 @@ public class Saveandload : MonoBehaviour
 
     public string playersName = "DefaultJohn";
 
-    public float gameTimer = 5f;
-    public bool isGameOver = false;
+
 
     public static string PLAYERNAMESAVE = "PLayerName";
 
@@ -45,22 +44,11 @@ public class Saveandload : MonoBehaviour
             PlayerPrefs.DeleteAll();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGameOver != true)
-        {
-            playerCurrentScore += 1;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && isGameOver != true)
+        //{
+         //   playerCurrentScore += 1;
+       // }
 
-        gameTimer -= Time.deltaTime;
-        //Game Over.
-        if (gameTimer <= 0 && isGameOver != true)
-        {
-            isGameOver = true;
-
-            if(playerCurrentScore > playerHighScore)
-            {
-                playerHighScore = playerCurrentScore;
-                PlayerPrefs.SetInt("HighScore", playerHighScore);
-            }
-        }
+       
     }
 }

@@ -5,6 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mobile
+  - CarDestroyer
+  - TerrainRemover
+  - Terrain
+  - Frog
+  - 2UnitTerrain
+  - 4UnitTerrain
+  - 6UnitTerrain
+  - Log
+  - ScoreAdder
+  - Drown
+  - Unsafe
   layers:
   - Default
   - TransparentFX
