@@ -16,6 +16,9 @@ TagManager:
   - ScoreAdder
   - Drown
   - Unsafe
+  - ActiveLog
+  - ActiveLogR
+  - ActiveLogL
   layers:
   - Default
   - TransparentFX

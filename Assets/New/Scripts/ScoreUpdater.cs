@@ -26,6 +26,7 @@ public class ScoreUpdater : MonoBehaviour
         {
             this.tag = "Terrain";
             GameObject.Find("Score Tracker").GetComponent<Score>().scoreAddition();
+            
         }
     }
 }

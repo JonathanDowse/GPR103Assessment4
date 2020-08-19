@@ -14,6 +14,9 @@ public class PlayerSimpleMove : MonoBehaviour
     public float camBase;                           // assigning an empty value for the bottom of the screen based on the camera view
     public bool onLog;
     public bool inWater;
+    private float logMovement = 0f;
+    public float logDir = 0f;
+    public float waterDeathCheck = 0f;
     
 
     private void Start()
@@ -24,6 +27,12 @@ public class PlayerSimpleMove : MonoBehaviour
     void Update()
     {
         camBase = Camera.main.transform.position.y - 5.5f;                                                              // assigning bottom of screen for camera movement and player boundaries 
+
+
+        
+
+
+        
 
         if (Input.GetKeyDown(KeyCode.W) && playerAlive == true)                                                         // move forward
         {
@@ -56,7 +65,7 @@ public class PlayerSimpleMove : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.R) && playerAlive == false)                                                   // if player is killed, R can be pressed to restart
         {
-            //if(GameObject.Find("Frog"))
+            
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);                                                 // code resets game scene
         }
@@ -68,12 +77,35 @@ public class PlayerSimpleMove : MonoBehaviour
 
         
 
-    }
 
-   
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.tag == "Drown")
+        {
+            inWater = true;
+
+        }
+
+        if (collision.tag == "ActiveLogL")
+        {
+            logDir = 2;
+            
+        }
+
+
+        if (collision.tag == "ActiveLogR")
+        {
+            logDir = -2f;
+            
+        }
+        FixedUpdate(); 
+        
+
+
         if (collision.tag == "Mobile" && playerAlive == true)                                                           // if player collides with any gameobjects with the "Mobile" tag and player isnt declared dead yet
         {
             PlayRoadKillSound();                                                                                        // calls another function
@@ -81,18 +113,22 @@ public class PlayerSimpleMove : MonoBehaviour
             Debug.Log("Dead");    
         } 
 
-        if (collision.tag == "Drown")
-        {
-            inWater = true;
-        }
         
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        
+
+            transform.Translate(Vector2.right * Time.deltaTime * logDir, Space.World);
+
+       
     }
 
+
+    void PlayerDrowned()
+    {
+        Debug.LogError("ahit");
+    }
 
 
     void PlayJumpSound()
@@ -108,5 +144,8 @@ public class PlayerSimpleMove : MonoBehaviour
         audioSource.clip = roadKill;                                                                                   // assigns new audio file to component
         audioSource.Play();                                                                                            // plays component file
     }
+
+    
+
 
 }
