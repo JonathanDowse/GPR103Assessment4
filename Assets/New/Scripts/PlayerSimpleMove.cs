@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vector3 = UnityEngine.Vector3;
+using Vector2 = UnityEngine.Vector2;
 
 public class PlayerSimpleMove : MonoBehaviour
 {
 
-    public Sprite up, down, left, right;            // allows sprite allocation for different conditons 
-    public AudioClip hop, roadKill, begin, item;    // declaring audio clip variables to assign files to
+    public Sprite up, down, left, right, drowned, drowned2, hit;            // allows sprite allocation for different conditons 
+    public AudioClip hop, roadKill, begin, item, drown;    // declaring audio clip variables to assign files to
     private AudioSource audioSource;               // declaring audio source component
     public bool playerAlive = true;                 // assigning player alive condition
     public float camBase;                           // assigning an empty value for the bottom of the screen based on the camera view
-    public bool onLog;
-    public bool inWater;
-    private float logMovement = 0f;
+    public bool onLog = false;
+    public bool inWater = false;
     public float logDir = 0f;
     public float waterDeathCheck = 0f;
     
@@ -75,34 +77,42 @@ public class PlayerSimpleMove : MonoBehaviour
             playerAlive = false;
         }
 
-        
 
+        if (onLog == false && inWater == true && playerAlive == true)
+        {
+            PlayerDrowned();
+            playerAlive = false;
+            tag = "Dead";
+            GetComponent<SpriteRenderer>().sortingOrder = 1;
+            DrownFrame0();
+        }
 
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
 
-        if (collision.tag == "Drown")
-        {
-            inWater = true;
-
-        }
+        if (collision.tag == "ActiveLogR")
+            {
+                logDir = -2f;
+                onLog = true;
+            }
 
         if (collision.tag == "ActiveLogL")
         {
             logDir = 2;
-            
+            onLog = true;
         }
 
 
-        if (collision.tag == "ActiveLogR")
+
+
+        if (collision.tag == "Drown")
         {
-            logDir = -2f;
-            
+            inWater = true;
         }
-        FixedUpdate(); 
         
 
 
@@ -124,10 +134,25 @@ public class PlayerSimpleMove : MonoBehaviour
        
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Drown")
+        {
+            inWater = false;
+        }
+
+        if (collision.tag == "Log")
+        {
+            logDir = 0f;
+            onLog = false;
+
+        }
+    }
 
     void PlayerDrowned()
     {
-        Debug.LogError("ahit");
+        
+        PlayRoadKillSound();
     }
 
 
@@ -145,7 +170,20 @@ public class PlayerSimpleMove : MonoBehaviour
         audioSource.Play();                                                                                            // plays component file
     }
 
-    
+
+    void DrownFrame0()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = drowned;    // assigning assigned sprite variable to gameobject's active sprite
+        Invoke("DrownFrame1", 0.4f);                           // ^^
+    }
+
+    void DrownFrame1()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = drowned2;    
+        Invoke("DrownFrame0", 0.4f);                           
+    }
+
+
 
 
 }

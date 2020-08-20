@@ -8,17 +8,15 @@ TagManager:
   - CarDestroyer
   - TerrainRemover
   - Terrain
-  - Frog
   - 2UnitTerrain
   - 4UnitTerrain
   - 6UnitTerrain
   - Log
   - ScoreAdder
   - Drown
-  - Unsafe
-  - ActiveLog
   - ActiveLogR
   - ActiveLogL
+  - Dead
   layers:
   - Default
   - TransparentFX

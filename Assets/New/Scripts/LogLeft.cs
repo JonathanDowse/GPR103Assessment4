@@ -16,10 +16,15 @@ public class LogLeft : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         if (collision.tag == "Player")
         {
-                tag = "ActiveLogL";
+            
+            tag = "ActiveLogL";
+            print("Collision" + tag);
         }
+
         if (collision.tag == "CarDestroyer")                                        // if the log collides with any gameobject with the "CarDestroyer" tag							
         {
             Destroy(gameObject);                                                    // destroy parent gameobject
@@ -30,7 +35,10 @@ public class LogLeft : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        if (collision.tag == "Player")
+        {
+            tag = "Log";
+        }
     }
 
 
