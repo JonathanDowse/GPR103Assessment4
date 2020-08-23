@@ -2,31 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class ScoreUpdater : MonoBehaviour
 {
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)                             // when a trigger collision occurs...
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player" && this.tag == "ScoreAdder")                                                           // if player collides with any gameobjects with the "Mobile" tag and player isnt declared dead yet
+        if (collision.tag == "Player" && this.tag == "ScoreAdder")                  // if player collides with any gameobjects with "ScoreAdder" as their tag...
         {
-            this.tag = "Terrain";
-            GameObject.Find("Score Tracker").GetComponent<Score>().scoreAddition();
-            
+            this.tag = "Terrain";                                                   // gameobject player collides with changes tag to ensure it doesn't add to the score twice and so it can be destroyed by terrainremoval                                              
+            GameObject.Find("Score").GetComponent<Score>().scoreAddition();         // searches for a gameobject "Score" then gets its attached "Score" script and calls the "scoreAddition" function
         }
     }
 }

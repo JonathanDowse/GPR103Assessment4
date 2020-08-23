@@ -17,6 +17,9 @@ TagManager:
   - ActiveLogR
   - ActiveLogL
   - Dead
+  - LogR
+  - LogL
+  - Safe
   layers:
   - Default
   - TransparentFX
@@ -26,8 +29,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Player
+  - Logs
   - 
   - 
   - 
