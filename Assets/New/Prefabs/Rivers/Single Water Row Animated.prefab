@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16, y: 1}
+  m_Size: {x: 16, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &4774155227442898400
 GameObject:
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 4774155228610702575}
   m_Layer: 0
   m_Name: Single Water Row Animated
-  m_TagString: 2UnitTerrain
+  m_TagString: Drown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

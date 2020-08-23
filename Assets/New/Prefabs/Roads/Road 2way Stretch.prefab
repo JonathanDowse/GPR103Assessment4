@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 5320031804248162192}
   m_Layer: 0
   m_Name: Road 2way Stretch
-  m_TagString: 2UnitTerrain
+  m_TagString: Safe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
