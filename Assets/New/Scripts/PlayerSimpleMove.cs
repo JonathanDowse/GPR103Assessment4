@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vector3 = UnityEngine.Vector3;                                                                                        // ensuring that it uses the unity version of vector 3 rather than the system version
 using Vector2 = UnityEngine.Vector2;                                                                                        // ensuring that it uses the unity version of vector 3 rather than the system version
-using UnityEditor.U2D;
 
 public class PlayerSimpleMove : MonoBehaviour
 {
